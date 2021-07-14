@@ -6,6 +6,7 @@ import FormHelper from './components/formHelper.vue'
 import addBlog from './components/addBlog.vue'
 import showBlog from './components/showBlog.vue'
 import listBlog from './components/listBlogs.vue'
+import Header from './components/header.vue'
 import VueRouter from 'vue-router'
 import Routes from './routes'
 
@@ -13,21 +14,18 @@ Vue.use(VueResource)
 Vue.use(Axios)
 Vue.use(VueRouter)
 
-const routes=[
-  {path:'/', component:showBlogs  },
-    {path:'/add', component:addBlog},
-    
-]
-
-
-const router = new VueRouter({
-  routes
+const router=new VueRouter({
+  routes: Routes,
+  mode:'history'
 })
+  
+
 
 Vue.component('form-helper',FormHelper)
 Vue.component('add-blog',addBlog)
 Vue.component('show-blog',showBlog)
 Vue.component('list-blog',listBlog)
+Vue.component('app-header',Header)
 
 Vue.directive('rainbow',{
   bind(el,binding,vnode){
@@ -58,7 +56,7 @@ Vue.filter('snippet',function(value){
 
 
 
-export const bus=new Vue();
+
 
 new Vue({
   router:router,
