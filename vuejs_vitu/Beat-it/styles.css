@@ -1,0 +1,40 @@
+/* span{
+    background:red ;
+    display: inline-block;
+    padding: 10px;
+    color: #fff;
+    margin: 0px;
+}
+.available span{
+    background: green;
+}
+.nearby span::after{
+    content: "nearby";
+    margin-left: 10px;
+} */
+#bag{
+    width:200px;
+    height:560px;
+    margin:0 auto;
+    background:url(img/bag.png) center no-repeat;
+    background-size: 100%;
+
+}
+#bag.burst{
+    background:url(img/bag-burst.png)center no-repeat;
+    background-size: 100%; 
+}
+#bag-health{
+    width: 200px;
+    border:2px solid#000;
+    margin: 0 auto 20px;
+}
+#bag-health div{
+    height:20px;
+    background: crimson;
+}
+#controls{
+    width:120px;
+    margin:0 auto;
+
+}
