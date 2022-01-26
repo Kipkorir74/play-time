@@ -23,7 +23,7 @@ Route::get('/', function () {
 
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return view('mine.locomote');
 })->middleware(['auth'])->name('dashboard');
 
 Route::get('/email/verify', function () {
@@ -49,3 +49,15 @@ use App\Http\Controllers\GoogleController;
 Route::get('auth/google', [GoogleController::class, 'redirectToGoogle']);
 
 Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

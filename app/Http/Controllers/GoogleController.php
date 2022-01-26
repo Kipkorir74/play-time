@@ -15,7 +15,49 @@ class GoogleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function handleGoogleCallback()
+    {
+ 
+        
+        try {
+
+            $user = Socialite::driver('google')->user();
+
+            $finduser = User::where('google_id', $user->id)->first();
+
+            if($finduser){
+
+                Auth::login($finduser);
+
+               return redirect('/dashboard');
+
+            }else{
+
+                $newUser = User::create([
+
+                    'name' => $user->name,
+
+                    'email' => $user->email,
+
+              'google_id'=> $user->id
+
+                ]);
+
+                Auth::login($newUser);
+
+                return redirect('/dashboard');
+                }
+        }
+        catch (Exception $e) {
+           return redirect('auth/google');
+        }
+        
+    }
+	public function redirectToGoogle()
+    {
+        return Socialite::driver('google')->redirect();
+    }
+	public function index()
     {
         //
     }
@@ -86,48 +128,8 @@ class GoogleController extends Controller
         //
     }
 
-    public function redirectToGoogle()
-    {
-        return Socialite::driver('google')->redirect();
-    }
+    
         
-    public function handleGoogleCallback()
-    {
- 
-        
-        try {
-
-            $user = Socialite::driver('google')->user();
-
-            $finduser = User::where('google_id', $user->id)->first();
-
-            if($finduser){
-
-                Auth::login($finduser);
-
-               return redirect('/dashboard');
-
-            }else{
-
-                $newUser = User::create([
-
-                    'name' => $user->name,
-
-                    'email' => $user->email,
-
-              'google_id'=> $user->id
-
-                ]);
-
-                Auth::login($newUser);
-
-                return redirect('/dashboard');
-                }
-        }
-        catch (Exception $e) {
-           return redirect('auth/google');
-        }
-        
-    }
+    
 }
 
